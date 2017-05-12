@@ -1,6 +1,6 @@
 // (c) Copyright 2017, Sean Connelly (@voidqk), http://syntheti.cc
 // MIT License
-// Project Home: https://github.com/voidqk/nightmare
+// Project Home: https://github.com/voidqk/sdl-audio-leak
 
 #include "SDL.h"
 
