@@ -32,8 +32,8 @@ int main(int argc, char **argv){
 		fgetc(stdin);
 		SDL_CloseAudioDevice(dev);
 	}
-	SDL_Quit();
 	printf("hit a key to exit\n");
 	fgetc(stdin);
+	SDL_Quit();
 	return 0;
 }
