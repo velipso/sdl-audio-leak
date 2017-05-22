@@ -693,7 +693,7 @@ audioqueue_thread(void *arg)
     /* init was successful, alert parent thread and start running... */
     SDL_SemPost(this->hidden->ready_semaphore);
     while (!SDL_AtomicGet(&this->hidden->shutdown)) {
-        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.10, 1);
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, 1);
     }
 
     if (this->iscapture) {  /* just stop immediately for capture devices. */

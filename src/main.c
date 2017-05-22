@@ -5,12 +5,9 @@
 #include "SDL.h"
 
 #include <stdio.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
 
 void sdl_copy_audio(void *userdata, Uint8* stream, int len){
-	memset(stream, 0, len);
+	fprintf(stderr, "Not used\n");
 }
 
 int main(int argc, char **argv){
@@ -27,7 +24,7 @@ int main(int argc, char **argv){
 	if (dev == 0)
 		fprintf(stderr, "Failed to open audio: %s\n", SDL_GetError());
 	else{
-		SDL_PauseAudioDevice(dev, 0); // begin playing
+		//SDL_PauseAudioDevice(dev, 0); // begin playing
 		printf("hit a key to close audio device\n");
 		fgetc(stdin);
 		SDL_CloseAudioDevice(dev);
