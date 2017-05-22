@@ -5,9 +5,16 @@
 #include "SDL.h"
 
 #include <stdio.h>
+#include <math.h>
 
 void sdl_copy_audio(void *userdata, Uint8* stream, int len){
-	fprintf(stderr, "Not used\n");
+	static float ang = 0;
+	float *smp = (float *)stream;
+	len /= sizeof(float);
+	for (int i = 0; i < len; i += 2){
+		ang = fmodf(ang + 0.06f, M_PI * 2.0f);
+		smp[i] = smp[i + 1] = 0.25f * sinf(ang);
+	}
 }
 
 int main(int argc, char **argv){
@@ -24,7 +31,7 @@ int main(int argc, char **argv){
 	if (dev == 0)
 		fprintf(stderr, "Failed to open audio: %s\n", SDL_GetError());
 	else{
-		//SDL_PauseAudioDevice(dev, 0); // begin playing
+		SDL_PauseAudioDevice(dev, 0); // begin playing
 		printf("hit a key to close audio device\n");
 		fgetc(stdin);
 		SDL_CloseAudioDevice(dev);

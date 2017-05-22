@@ -693,8 +693,13 @@ audioqueue_thread(void *arg)
     /* init was successful, alert parent thread and start running... */
     SDL_SemPost(this->hidden->ready_semaphore);
     while (!SDL_AtomicGet(&this->hidden->shutdown)) {
-        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.01, 1);
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.10, 1);
     }
+// FIX:
+//    while (!SDL_AtomicGet(&this->hidden->shutdown)) {
+//        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0, 1);
+//        SDL_Delay(20);
+//    }
 
     if (this->iscapture) {  /* just stop immediately for capture devices. */
         AudioQueueStop(this->hidden->audioQueue, 1);
